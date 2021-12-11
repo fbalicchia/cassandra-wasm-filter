@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  cass-server:
+    image: cassandra
+    container_name: cass-server
+    ports:
+      - "9042:9042"   # Native transport
+      - "7199:7199"   # JMX
+      - "9160:9160"   # Thrift clients
+    environment:
+      - HEAP_NEWSIZE=12M
+      - MAX_HEAP_SIZE=64M
+    networks:
+      - "cassandra-net"
+  cass-client:
+    container_name: cass-client
+    image: cassandra
+    command: >
+      /bin/bash -c "sleep 3000"
+    networks:
+      - "cassandra-net"
+networks:
+  cassandra-net:

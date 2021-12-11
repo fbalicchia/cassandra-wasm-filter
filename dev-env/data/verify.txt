@@ -1,0 +1,6 @@
+##Test command line
+export CASS_HOME=~/tools/cassandra
+export CQLSH_HOST=localhost
+export CQLSH_PORT=18000
+$CASS_HOME/bin/cqlsh --protocol-version=4
+select * from deathstar.scrum_notes;
